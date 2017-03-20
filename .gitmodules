@@ -1,0 +1,3 @@
+[submodule "heatmap/inst/htmlwidgets/lib/heatmap-ns"]
+	path = heatmap/inst/htmlwidgets/lib/heatmap-ns
+	url = https://github.com/alexrfling/heatmap-ns
