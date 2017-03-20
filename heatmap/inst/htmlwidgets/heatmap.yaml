@@ -3,10 +3,12 @@ dependencies:
     version: 1.0.0
     src: htmlwidgets/lib/heatmap-ns
     script:
-      - d3/d3.min.js
+      - d3-helpers/d3/d3.min.js
+      - d3-helpers/d3-tip/index.js
       - d3-helpers/bucketizer.js
       - d3-helpers/graphicalElement.js
       - d3-helpers/cells.js
+      - d3-helpers/flushContents.js
       - d3-helpers/identity.js
       - d3-helpers/interpolateColors.js
       - d3-helpers/key.js
@@ -15,8 +17,7 @@ dependencies:
       - d3-helpers/sample.js
       - d3-helpers/svgContainer.js
       - d3-helpers/title.js
-      - d3-tip/index.js
       - heatmap.js
     stylesheet:
-      - d3-tip/examples/example-styles.css
+      - d3-helpers/d3-tip/examples/example-styles.css
       - heatmap.css
