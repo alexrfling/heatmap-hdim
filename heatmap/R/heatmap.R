@@ -10,7 +10,7 @@
 #   Build and Reload Package:  'Cmd + Shift + B'
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
-heatmap <- function (matrix, width = NULL, height = NULL) {
+heatmap <- function (matrix, width = NULL, height = NULL, scaleBy = 'col') {
 
     # read the matrix
     data <- matrix
@@ -21,20 +21,19 @@ heatmap <- function (matrix, width = NULL, height = NULL) {
     colClustOrder <- colnames(matrix)[obj$colInd]
     rowClustOrder <- rownames(matrix)[obj$rowInd][nrow(matrix):1]
 
-    # create a list that contains the settings
-    settings <- list(
+    options <- list(
         id = 'heatmap',
         colClustOrder = colClustOrder,
-        rowClustOrder = rowClustOrder
+        rowClustOrder = rowClustOrder,
+        scaleBy = scaleBy
     )
 
     # pass the data and settings using 'x'
     x <- list(
         data = data,
-        settings = settings
+        options = options
     )
 
-    # create the widget
     htmlwidgets::createWidget('heatmap', x, width = width, height = height)
 }
 

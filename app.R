@@ -12,8 +12,17 @@ ui <- fluidPage(
             fileInput(inputId = 'file',
                       label = 'Choose a file:'),
 
+            selectInput(inputId = 'scaleBy',
+                        label = 'Scale by:',
+                        choices = list(
+                            'Z-score (column)' = 'col',
+                            'Z-score (row)' = 'row',
+                            'None' = 'none',
+                            'Buckets' = 'bucket'
+                        )),
+
             radioButtons(inputId = 'rowNamesIndex',
-                         label = 'Row Names Index',
+                         label = 'Row names index:',
                          choices = c(1, 'none'))
         )
     ),
@@ -65,7 +74,7 @@ server <- function (input, output) {
 
         df <- removeColsWithNas(getDataFrame(input$file, input$rowNamesIndex))
 
-        heatmap(df, width = '100%', height = '100%')
+        heatmap(df, width = '100%', height = '100%', scaleBy = input$scaleBy)
     })
 }
 
