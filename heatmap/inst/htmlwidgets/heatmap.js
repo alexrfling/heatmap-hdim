@@ -16,17 +16,17 @@ HTMLWidgets.widget({
 
                 if (!heatmap.dataset) {
                     var data = HTMLWidgets.dataframeToD3(x.data);
-                    var colnames = Object.keys(x.data).map(function (d) { return String(d); });
+                    var colnames = Object.keys(x.data).map(String);
                     var rowKey = colnames.shift();
-                    var rownames = x.data[rowKey].map(function (d) { return String(d); });
+                    var rownames = x.data[rowKey].map(String);
 
-                    var matrix = rownames.map(function (rowname, index) {
-                        return colnames.map(function (colname) {
+                    var matrix = rownames.map(function (rowname, j) {
+                        return colnames.map(function (colname, k) {
                             return {
-                                key: rowname + ' ' + colname,
+                                key: j + ' ' + k,
                                 row: rowname,
                                 col: colname,
-                                value: x.data[colname][index]
+                                value: x.data[colname][j]
                             };
                         });
                     });
@@ -54,17 +54,17 @@ HTMLWidgets.widget({
 
                 } else {
                     var data = HTMLWidgets.dataframeToD3(x.data);
-                    var colnames = Object.keys(x.data).map(function (d) { return String(d); });
+                    var colnames = Object.keys(x.data).map(String);
                     var rowKey = colnames.shift();
-                    var rownames = x.data[rowKey].map(function (d) { return String(d); });
+                    var rownames = x.data[rowKey].map(String);
 
-                    var matrix = rownames.map(function (rowname, index) {
-                        return colnames.map(function (colname) {
+                    var matrix = rownames.map(function (rowname, j) {
+                        return colnames.map(function (colname, k) {
                             return {
-                                key: rowname + ' ' + colname,
+                                key: j + ' ' + k,
                                 row: rowname,
                                 col: colname,
-                                value: x.data[colname][index]
+                                value: x.data[colname][j]
                             };
                         });
                     });
