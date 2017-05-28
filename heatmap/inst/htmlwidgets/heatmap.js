@@ -89,7 +89,7 @@ HTMLWidgets.widget({
             },
 
             resize: function (width, height) {
-                // Heatmap handles its own resizing (except for height...)
+                chart.resize(width, height);
             }
         };
     }
