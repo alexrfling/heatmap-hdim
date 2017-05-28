@@ -38,6 +38,8 @@ HTMLWidgets.widget({
                     };
 
                     var options = {
+                        width: width,
+                        height: height,
                         colClustOrder: x.options.colClustOrder,
                         rowClustOrder: x.options.rowClustOrder,
                         height: height,
