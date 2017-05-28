@@ -8,13 +8,13 @@ HTMLWidgets.widget({
 
     factory: function (el, width, height) {
 
-        var heatmap = new Heatmap(el.id);
+        var chart = new Heatmap(el.id);
 
         return {
             renderValue: function (x) {
                 var scaleBy = x.options.scaleBy;
 
-                if (!heatmap.dataset) {
+                if (!chart.dataset) {
                     var data = HTMLWidgets.dataframeToD3(x.data);
                     var colnames = Object.keys(x.data).map(String);
                     var rowKey = colnames.shift();
@@ -46,11 +46,11 @@ HTMLWidgets.widget({
                         parsed: true
                     };
 
-                    heatmap.initialize(dataset, options);
+                    chart.initialize(dataset, options);
 
-                } else if (scaleBy !== heatmap.scalingDim) {
+                } else if (scaleBy !== chart.scalingDim) {
 
-                    heatmap.updateColorScaling(scaleBy);
+                    chart.updateColorScaling(scaleBy);
 
                 } else {
                     var data = HTMLWidgets.dataframeToD3(x.data);
@@ -84,7 +84,7 @@ HTMLWidgets.widget({
                         parsed: true
                     };
 
-                    heatmap.initializeVis(dataset, options);
+                    chart.initializeVis(dataset, options);
                 }
             },
 
