@@ -84,7 +84,7 @@ HTMLWidgets.widget({
                         parsed: true
                     };
 
-                    chart.initializeVis(dataset, options);
+                    chart.initialize(dataset, options);
                 }
             },
 
