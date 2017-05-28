@@ -46,7 +46,7 @@ HTMLWidgets.widget({
                         parsed: true
                     };
 
-                    heatmap.initializeVis(dataset, options);
+                    heatmap.initialize(dataset, options);
 
                 } else if (scaleBy !== heatmap.scalingDim) {
 
