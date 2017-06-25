@@ -4,6 +4,16 @@
 library(htmlwidgets)
 library(heatmap)
 
+COLORS = list(
+    Corn = 'cornflowerblue',
+    Red = '#dc3912',
+    Orange = '#e67300',
+    Yellow = '#ff9900',
+    Green = '#109618',
+    Blue = '#3366cc',
+    Purple = '#990099'
+)
+
 ui <- fluidPage(
 
     absolutePanel(top = '0.5%', left = '0.5%', width = '19%', fixed = TRUE,
@@ -23,7 +33,17 @@ ui <- fluidPage(
 
             radioButtons(inputId = 'rowNamesIndex',
                          label = 'Row names index:',
-                         choices = c(1, 'none'))
+                         choices = c(1, 'none')),
+
+            selectInput(inputId = 'loColor',
+                        label = 'Low color:',
+                        choices = COLORS,
+                        selected = COLORS$Corn),
+
+            selectInput(inputId = 'hiColor',
+                        label = 'High color:',
+                        choices = COLORS,
+                        selected = COLORS$Orange)
         )
     ),
 
@@ -77,6 +97,8 @@ server <- function (input, output) {
         heatmap(df,
                 width = '100%',
                 height = '100%',
+                loColor = input$loColor,
+                hiColor = input$hiColor,
                 scalingDim = input$scalingDim,
                 colorsBucket = rev(c('#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c')))
     })

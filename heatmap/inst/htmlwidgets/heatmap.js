@@ -80,6 +80,10 @@ HTMLWidgets.widget({
 
                     chart.updateColorScaling(scalingDim);
 
+                } else if (loColor !== chart.loColor || hiColor !== chart.hiColor) {
+
+                    chart.updateColors(loColor, hiColor);
+
                 } else {
                     var data = HTMLWidgets.dataframeToD3(x.data);
                     var colnames = Object.keys(x.data).map(String);
