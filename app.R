@@ -12,7 +12,7 @@ ui <- fluidPage(
             fileInput(inputId = 'file',
                       label = 'Choose a file:'),
 
-            selectInput(inputId = 'scaleBy',
+            selectInput(inputId = 'scalingDim',
                         label = 'Scale by:',
                         choices = list(
                             'Z-score (column)' = 'col',
@@ -74,7 +74,11 @@ server <- function (input, output) {
 
         df <- removeColsWithNas(getDataFrame(input$file, input$rowNamesIndex))
 
-        heatmap(df, width = '100%', height = '100%', scaleBy = input$scaleBy)
+        heatmap(df,
+                width = '100%',
+                height = '100%',
+                scalingDim = input$scalingDim,
+                colorsBucket = rev(c('#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c')))
     })
 }
 

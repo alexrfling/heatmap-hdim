@@ -10,7 +10,24 @@
 #   Build and Reload Package:  'Cmd + Shift + B'
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
-heatmap <- function (matrix, width = NULL, height = NULL, scaleBy = 'col') {
+heatmap <- function (matrix,
+                     width = NULL,
+                     height = NULL,
+                     colClustOrder = NULL,
+                     rowClustOrder = NULL,
+                     loColor = 'cornflowerblue',
+                     hiColor = 'orange',
+                     colorsBucket = c('red', 'orange', 'yellow', 'gray', 'cornflowerblue'),
+                     dividersBucket = c(25, 50, 100, 500),
+                     colCatScheme = 'rainbow',
+                     colConScheme = 'rainbow',
+                     colAnnoHeatScheme = 'plasma',
+                     rowCatScheme = 'google',
+                     rowConScheme = 'cubehelix',
+                     rowAnnoHeatScheme = 'magma',
+                     categorical = TRUE,
+                     scalingDim = 'col',
+                     renderOnBrushEnd = TRUE) {
 
     # read the matrix
     data <- matrix
@@ -25,7 +42,19 @@ heatmap <- function (matrix, width = NULL, height = NULL, scaleBy = 'col') {
         id = 'heatmap',
         colClustOrder = colClustOrder,
         rowClustOrder = rowClustOrder,
-        scaleBy = scaleBy
+        loColor = loColor,
+        hiColor = hiColor,
+        colorsBucket = colorsBucket,
+        dividersBucket = dividersBucket,
+        colCatScheme = colCatScheme,
+        colConScheme = colConScheme,
+        colAnnoHeatScheme = colAnnoHeatScheme,
+        rowCatScheme = rowCatScheme,
+        rowConScheme = rowConScheme,
+        rowAnnoHeatScheme = rowAnnoHeatScheme,
+        categorical = categorical,
+        scalingDim = scalingDim,
+        renderOnBrushEnd = renderOnBrushEnd
     )
 
     # pass the data and settings using 'x'

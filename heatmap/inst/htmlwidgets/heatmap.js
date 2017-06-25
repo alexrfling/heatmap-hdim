@@ -10,11 +10,30 @@ HTMLWidgets.widget({
 
         var chart = new Heatmap(el.id);
 
+        // booleans converted from R may be true, false, 'TRUE', or 'FALSE'
+        function getBool (bool) {
+            return (bool === true || bool === 'TRUE');
+        }
+
         return {
             renderValue: function (x) {
-                var scaleBy = x.options.scaleBy;
+                var colClustOrder = x.options.colClustOrder;
+                var rowClustOrder = x.options.rowClustOrder;
+                var loColor = x.options.loColor;
+                var hiColor = x.options.hiColor;
+                var colorsBucket = x.options.colorsBucket;
+                var dividersBucket = x.options.dividersBucket;
+                var colCatScheme = x.options.colCatScheme;
+                var colConScheme = x.options.colConScheme;
+                var colAnnoHeatScheme = x.options.colAnnoHeatScheme;
+                var rowCatScheme = x.options.rowCatScheme;
+                var rowConScheme = x.options.rowConScheme;
+                var rowAnnoHeatScheme = x.options.rowAnnoHeatScheme;
+                var categorical = getBool(x.options.categorical);
+                var scalingDim = x.options.scalingDim;
+                var renderOnBrushEnd = getBool(x.options.renderOnBrushEnd);
 
-                if (!chart.dataset) {
+                if (!chart.data) {
                     var data = HTMLWidgets.dataframeToD3(x.data);
                     var colnames = Object.keys(x.data).map(String);
                     var rowKey = colnames.shift();
@@ -38,21 +57,28 @@ HTMLWidgets.widget({
                     };
 
                     var options = {
-                        width: width,
-                        height: height,
-                        colClustOrder: x.options.colClustOrder,
-                        rowClustOrder: x.options.rowClustOrder,
-                        height: height,
-                        renderOnBrushEnd: true,
-                        bucketColors: ['#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c'].reverse(),
-                        parsed: true
+                        colClustOrder: colClustOrder,
+                        rowClustOrder: rowClustOrder,
+                        loColor: loColor,
+                        hiColor: hiColor,
+                        colorsBucket: colorsBucket,
+                        dividersBucket: dividersBucket,
+                        colCatScheme: colCatScheme,
+                        colConScheme: colConScheme,
+                        colAnnoHeatScheme: colAnnoHeatScheme,
+                        rowCatScheme: rowCatScheme,
+                        rowConScheme: rowConScheme,
+                        rowAnnoHeatScheme: rowAnnoHeatScheme,
+                        categorical: categorical,
+                        scalingDim: scalingDim,
+                        renderOnBrushEnd: renderOnBrushEnd
                     };
 
                     chart.initialize(dataset, options);
 
-                } else if (scaleBy !== chart.scalingDim) {
+                } else if (scalingDim !== chart.scalingDim) {
 
-                    chart.updateColorScaling(scaleBy);
+                    chart.updateColorScaling(scalingDim);
 
                 } else {
                     var data = HTMLWidgets.dataframeToD3(x.data);
@@ -78,12 +104,23 @@ HTMLWidgets.widget({
                     };
 
                     var options = {
-                        colClustOrder: x.options.colClustOrder,
-                        rowClustOrder: x.options.rowClustOrder,
+                        width: width,
                         height: height,
-                        renderOnBrushEnd: true,
-                        bucketColors: ['#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c'].reverse(),
-                        parsed: true
+                        colClustOrder: colClustOrder,
+                        rowClustOrder: rowClustOrder,
+                        loColor: loColor,
+                        hiColor: hiColor,
+                        colorsBucket: colorsBucket,
+                        dividersBucket: dividersBucket,
+                        colCatScheme: colCatScheme,
+                        colConScheme: colConScheme,
+                        colAnnoHeatScheme: colAnnoHeatScheme,
+                        rowCatScheme: rowCatScheme,
+                        rowConScheme: rowConScheme,
+                        rowAnnoHeatScheme: rowAnnoHeatScheme,
+                        categorical: categorical,
+                        scalingDim: scalingDim,
+                        renderOnBrushEnd: renderOnBrushEnd
                     };
 
                     chart.initialize(dataset, options);
